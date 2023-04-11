@@ -52,16 +52,12 @@ def notebook_bot(username: str):
 
         elif request == "PRINT" or request == "SHOW" or request == "ПЕЧАТЬ":
             full_notebook = dbi.read_notebook()
-            for element in full_notebook:
-                ui.show_entry(element)
-                print("\n")
+            ui.show_entries(full_notebook)
 
         elif request == "FIND" or request == "НАЙТИ" or request == "НАЙДИ" or request == "DATE" or request == "ДАТА":
             result = dbi.find_entry_bydate(ui.read_string("введите день в формате <XX.XX> или <XX.XX.XXXX>, либо месяц в формате <XX.XXXX>, либо год в формате <XXXX>) - "))
             if len(result) == 0: ui.print_str("Не найдено записей, соответствующих запросу")
-            for element in result:
-                ui.show_entry(element)
-                print("\n")
+            ui.show_entries(result)
 
 #TODO: тут надо будет сменить логику, чтобы удаление было за счет поиска по id.
 # Иначе заголовки могут совпадать и пользователь никогда не сможет удалить одну запись.
